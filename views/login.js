@@ -10,13 +10,14 @@ import {
   useColorScheme,
   View,
 } from 'react-native';
+import { NativeBaseProvider, Box } from 'native-base';
 function Login() {
 
   return (
     
-        <View>
-         <Text>Hola from Login</Text>
-        </View>
+    <NativeBaseProvider>
+    <Box>Hello world</Box>
+  </NativeBaseProvider>
       
   );
 }
