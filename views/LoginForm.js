@@ -1,5 +1,6 @@
-import React from 'react';
-import { StyleSheet, View, Text, TextInput, TouchableOpacity , TouchableWithoutFeedback} from 'react-native';
+import React, { useState } from 'react';
+import { StyleSheet, View, Text, TextInput, TouchableOpacity, TouchableWithoutFeedback, Keyboard } from 'react-native';
+import axios from 'axios';
 
 
 function LoginForm() {
@@ -7,19 +8,52 @@ function LoginForm() {
     const cerrarTeclado = () => {
         Keyboard.dismiss();
     }
+    const [rut, guardarRut] = useState('');
+    const [password, guardarPassword] = useState('');
 
+    const validarInicioSesion = async () => {
+        console.log("TEST");
+        const formData = new FormData();
+        formData.append('run', rut);
+        formData.append('contrasena', password);
+        formData.append('tipo', 'app');
+        axios.post('https://grupohexxa.cl/postventa_desarrollo/validaciones/validarLogin.php', formData, {
+
+        })
+            .then(response => {
+                console.log("Respuesta " + response.data);
+
+            })
+            .catch(e => {
+                // Podemos mostrar los errores en la consola
+                console.log(e);
+
+
+            })
+    }
     return (
         <TouchableWithoutFeedback onPress={() => cerrarTeclado()}>
-        <View style={styles.container}>
-           
-            <TextInput style={styles.input} placeholder="RUT" placeholderTextColor="rgba(255,255,255,0.7)" />
-            <TextInput placeholder="Contraseña" secureTextEntry style={styles.input} placeholderTextColor="rgba(255,255,255,0.7)"  />
+            <View style={styles.container}>
 
-            <TouchableOpacity style={styles.buttonEntrar}>
-                <Text style={styles.buttonText}>ENTRAR</Text>
-            </TouchableOpacity>
+                <TextInput
+                    style={styles.input}
+                    placeholder="RUT"
+                    placeholderTextColor="rgba(255,255,255,0.7)"
+                    onChangeText={rut => guardarRut(rut)}
+                />
+                <TextInput
+                    placeholder="Contraseña"
+                    secureTextEntry
+                    style={styles.input}
+                    placeholderTextColor="rgba(255,255,255,0.7)"
+                    onChangeText={password => guardarPassword(password)}
+                />
 
-        </View>
+                <TouchableOpacity style={styles.buttonEntrar}>
+                    <Text onPress={()=>validarInicioSesion()} style={styles.buttonText}>ENTRAR</Text>
+                </TouchableOpacity>
+
+            </View>
         </TouchableWithoutFeedback>
     )
 }
@@ -34,15 +68,15 @@ const styles = StyleSheet.create({
         color: '#FFF',
         paddingHorizontal: 10
     },
-    buttonEntrar:{
-        backgroundColor:'#2980b9',
-        paddingVertical:15
+    buttonEntrar: {
+        backgroundColor: '#2980b9',
+        paddingVertical: 15
     },
-    buttonText:{
+    buttonText: {
         // backgroundColor:'#29',
-        textAlign:'center',
-        color:'white',
-        fontWeight:'700'
+        textAlign: 'center',
+        color: 'white',
+        fontWeight: '700'
     }
 })
 export default LoginForm;
