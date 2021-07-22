@@ -10,14 +10,13 @@ import {
   useColorScheme,
   View,
 } from 'react-native';
-import { NativeBaseProvider, Box } from 'native-base';
-function App() {
+function Login() {
 
   return (
     
-    <NativeBaseProvider>
-    <Box>Hello world</Box>
-  </NativeBaseProvider>
+        <View>
+         <Text>Hola from Login</Text>
+        </View>
       
   );
 }
@@ -41,4 +40,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default App;
+export default Login;
