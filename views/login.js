@@ -2,6 +2,8 @@
 import React from 'react';
 
 import {
+  Dimensions,
+  ImageBackground,
   SafeAreaView,
   ScrollView,
   StatusBar,
@@ -9,36 +11,55 @@ import {
   Text,
   useColorScheme,
   View,
+  Image,
+  Label,
 } from 'react-native';
-import { NativeBaseProvider, Box } from 'native-base';
+import LoginForm from './LoginForm';
 function Login() {
 
   return (
-    
-    <NativeBaseProvider>
-    <Box>Hello world</Box>
-  </NativeBaseProvider>
-      
+    <View style={styles.container}>
+      <View style={styles.logoContainer}>
+        <Image
+          style={styles.logo}
+          source={require('../src/img/postventa.png')}></Image>
+        <Text style={styles.titleLogo}>INICIAR SESIÓN</Text>
+      </View>
+      <View style={styles.formContainer}>
+        <LoginForm/>
+      </View>
+    </View>
+
   );
 }
 
 const styles = StyleSheet.create({
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
+  container: {
+    flex: 1,
+    backgroundColor: '#3498db',
+    // justifyContent:'center'
   },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '600',
+  formContainer: {
+
   },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: '400',
+  logoContainer: {
+    alignItems: 'center',
+    flexGrow: 1,
+    justifyContent: 'center'
   },
-  highlight: {
-    fontWeight: '700',
+  logo: {
+    width: 240,
+    height: 40
   },
+  titleLogo: {
+    color: '#ffffff',
+    fontSize: 25,
+    fontWeight: 'bold',
+    marginTop: 10,
+    textAlign: 'center',
+    opacity: 0.9
+  }
+
 });
 
 export default Login;
