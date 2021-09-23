@@ -15,7 +15,7 @@ import {
   Label,
 } from 'react-native';
 import LoginForm from './LoginForm';
-function Login() {
+function Login({ navigation, route }) {
 
 
   return (

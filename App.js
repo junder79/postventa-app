@@ -1,6 +1,7 @@
 
 import React from 'react';
-
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
 import {
   SafeAreaView,
   ScrollView,
@@ -11,14 +12,59 @@ import {
   View,
 } from 'react-native';
 import { NativeBaseProvider, Box } from 'native-base';
+
+
+// Importar los componentes 
+import Login  from './views/login';
+import Formulario from './views/formulario';
+
+import { Provider as PaperProvider, DefaultTheme } from 'react-native-paper';
+const Stack = createStackNavigator();
+const theme = {
+  ...DefaultTheme,
+  colors: {
+    ...DefaultTheme.colors,
+    primary: '#0d4591'
+  }
+}
+
 function App() {
 
   return (
-    
-    <NativeBaseProvider>
-    <Box>Hello world</Box>
-  </NativeBaseProvider>
-      
+
+    <>
+      <PaperProvider theme={theme}>
+        <NavigationContainer >
+          <Stack.Navigator screenOptions={{
+            headerTitleAlign: 'center',
+            headerStyle: {
+              backgroundColor: theme.colors.primary
+            },
+            headerTintColor: theme.colors.surface,
+          }}>
+         
+            <Stack.Screen
+              name="Login"
+              component={Login}
+              options={({ navigation, route }) => ({
+                title: "Escanear Código QR",
+              
+              })}
+            />
+     
+            <Stack.Screen
+              name="Formulario"
+              component={Formulario}
+              options={({ navigation, route }) => ({
+                title: "Escanear Código QR"
+              })}
+            />
+
+          </Stack.Navigator>
+        </NavigationContainer>
+      </PaperProvider>
+    </>
+
   );
 }
 

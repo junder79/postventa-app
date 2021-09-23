@@ -22,6 +22,7 @@ function LoginForm() {
         })
             .then(response => {
                 console.log("Respuesta " + response.data);
+                navigation.navigate("Formulario");
 
             })
             .catch(e => {
