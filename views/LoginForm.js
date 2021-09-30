@@ -2,12 +2,12 @@ import React, { useState } from 'react';
 import { StyleSheet, View, Text, TextInput, TouchableOpacity, TouchableWithoutFeedback, Keyboard } from 'react-native';
 import axios from 'axios';
 
-
 function LoginForm() {
 
     const cerrarTeclado = () => {
         Keyboard.dismiss();
     }
+    
     const [rut, guardarRut] = useState('');
     const [password, guardarPassword] = useState('');
 
@@ -17,7 +17,7 @@ function LoginForm() {
         formData.append('run', rut);
         formData.append('contrasena', password);
         formData.append('tipo', 'app');
-        axios.post('https://grupohexxa.cl/postventa_desarrollo/validaciones/validarLogin.php', formData, {
+        axios.post('https://grupohexxa.cl/sistemas/postventa_desarrollo/validaciones/validarLogin.php', formData, {
 
         })
             .then(response => {

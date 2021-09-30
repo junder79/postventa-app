@@ -44,10 +44,10 @@ function App() {
           }}>
          
             <Stack.Screen
-              name="Login"
-              component={Login}
+              name="Postventa"
+              component={Formulario}
               options={({ navigation, route }) => ({
-                title: "Escanear Código QR",
+                //title: "Escanear Código QR",
               
               })}
             />
